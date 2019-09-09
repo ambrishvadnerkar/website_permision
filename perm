@@ -1,0 +1,39 @@
+#!/bin/bash
+if [ $# -gt 0 ]; then
+chown root.root "/var/www/html/$1" -R 
+chmod 575 "/var/www/html/$1" 
+if [ -d "/var/www/html/$1" ]; then
+find "/var/www/html/$1" -type f -print0 | while read -d $'\0' file 
+do 
+chmod 465 "$file" 
+done
+
+find "/var/www/html/$1" -type d -print0 | while read -d $'\0' file 
+do 
+chmod 575 "$file" 
+done
+else
+echo "Project does not exist"
+fi
+
+
+if [ -d "/var/www/html/$1/ecampus" ]; then
+find "/var/www/html/$1/ecampus" -type d -print0 | while read -d $'\0' file 
+do 
+chown apache.root "$file" -R 
+chmod 770 "$file" -R 
+done
+fi
+
+if [ -d "/var/www/html/$1/media" ]; then
+find "/var/www/html/$1/media" -type d -print0 | while read -d $'\0' file 
+do 
+chown apache.root "$file" -R 
+chmod 770 "$file" -R 
+done
+fi
+
+else
+echo  "Please provide project name"
+fi
+

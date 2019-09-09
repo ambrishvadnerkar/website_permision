@@ -1,0 +1,2 @@
+This is the shell/bash script set permission of the website which is running under apache server (with apache user) in CenOS/RHEL operating system. It will reset the existign permission, give read-execute permission to apache and write pemission to media folder (where image and other file will be uploaded). 
+Please note that this is the general idea of permission and need to be use my modifying accourding to your won requirement.
